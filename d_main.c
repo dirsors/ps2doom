@@ -37,7 +37,7 @@ static const char rcsid[] = "$Id: d_main.c,v 1.8 1997/02/03 22:45:09 b1 Exp $";
 //extern int access(char *file, int mode);
 
 #define R_OK	4
-int access(char *file, int mode)
+static int access(char *file, int mode)
 {
 	FILE *test_fp;
 
