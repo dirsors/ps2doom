@@ -856,9 +856,9 @@ AM_clipMline
 	TOP	=8
     };
     
-    register	outcode1 = 0;
-    register	outcode2 = 0;
-    register	outside;
+    register int outcode1 = 0;
+    register int outcode2 = 0;
+    register int outside;
     
     fpoint_t	tmp;
     int		dx;
@@ -989,7 +989,7 @@ AM_drawFline
     register int ay;
     register int d;
     
-    static fuck = 0;
+    static int fuck = 0;
 
     // For debugging only
     if (      fl->a.x < 0 || fl->a.x >= f_w
