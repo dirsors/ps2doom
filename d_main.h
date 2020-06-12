@@ -37,6 +37,7 @@
 extern char*		wadfiles[MAXWADFILES];
 
 void D_AddFile (char *file);
+int SDL_SYS_TimerInit(void);
 
 
 
