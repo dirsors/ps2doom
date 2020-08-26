@@ -762,8 +762,6 @@ static void IdentifyVersion(void)
 		else
             gamedescription = "DOOM 2: ?????????????";
     }
-
-    printf("%s\n", gamedescription);
 }
 
 
@@ -842,14 +840,32 @@ void FindResponseFile (void)
 
 // Startup banner
 
-void PrintBanner(void)
+void PrintBanner(char *msg)
 {
     int i;
 
-    for (i=0; i<39-(strlen(PACKAGE_STRING) / 2); ++i)
+    for (i=0; i<35-(strlen(msg) / 2); ++i)
         putchar(' ');
 
-    puts(PACKAGE_STRING);
+    puts(msg);
+}
+
+// Set the default location for the configuration file
+
+void SetBaseDefault(void)
+{
+    char *homedir;
+
+    homedir = getenv("HOME");
+
+    if (homedir != NULL)
+    {
+        sprintf(basedefault, "%s/.doomrc", homedir);
+    }
+    else
+    {
+        strcpy(basedefault, "default.cfg");
+    }
 }
 
 //
@@ -876,69 +892,14 @@ void D_DoomMain (void)
     else if (M_CheckParm ("-deathmatch"))
 	deathmatch = 1;
 
+	// set the location for default.cfg
+
+    SetBaseDefault();
+
 	// print banner
 
-    PrintBanner();
-
-#if 0
-    switch ( gamemode )
-    {
-      case retail:
-	sprintf (title,
-		 "                         "
-		 "The Ultimate DOOM Startup v%i.%i"
-		 "                           ",
-		 VERSION_NUM/100,VERSION_NUM%100);
-	break;
-      case shareware:
-	sprintf (title,
-		 "                            "
-		 "DOOM Shareware Startup v%i.%i"
-		 "                           ",
-		 VERSION_NUM/100,VERSION_NUM%100);
-	break;
-      case registered:
-	sprintf (title,
-		 "                            "
-		 "DOOM Registered Startup v%i.%i"
-		 "                           ",
-		 VERSION_NUM/100,VERSION_NUM%100);
-	break;
-      case commercial:
-	sprintf (title,
-		 "                         "
-		 "DOOM 2: Hell on Earth v%i.%i"
-		 "                           ",
-		 VERSION_NUM/100,VERSION_NUM%100);
-	break;
-/*FIXME
-       case pack_plut:
-	sprintf (title,
-		 "                   "
-		 "DOOM 2: Plutonia Experiment v%i.%i"
-		 "                           ",
-		 VERSION_NUM/100,VERSION_NUM%100);
-	break;
-      case pack_tnt:
-	sprintf (title,
-		 "                     "
-		 "DOOM 2: TNT - Evilution v%i.%i"
-		 "                           ",
-		 VERSION_NUM/100,VERSION_NUM%100);
-	break;
-*/
-      default:
-	sprintf (title,
-		 "                     "
-		 "Public DOOM - v%i.%i"
-		 "                           ",
-		 VERSION_NUM/100,VERSION_NUM%100);
-	break;
-    }
-    
-    printf ("%s\n",title);
-#endif
-
+    PrintBanner(PACKAGE_STRING);
+	
     if (devparm)
 	printf(D_DEVSTR);
     
@@ -1112,6 +1073,10 @@ void D_DoomMain (void)
 	autostart = true;
     }
     
+	printf ("===========================================================================\n");
+
+    PrintBanner(gamedescription);
+	
 	printf (
 	    "===========================================================================\n"
 	    " " PACKAGE_NAME " is free software, covered by the GNU General Public\n"
