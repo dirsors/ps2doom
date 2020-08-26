@@ -1,7 +1,7 @@
-AC_INIT(SDLDOOM, 1.10, Sam Lantinga, sdldoom)
+AC_INIT(PS2DOOM, 0.0.1, David P, ps2doom)
 AC_CONFIG_AUX_DIR(autotools)
 
-AM_INIT_AUTOMAKE(sdldoom, 1.10)
+AM_INIT_AUTOMAKE(ps2doom, 0.0.1)
 
 AC_PROG_MAKE_SET
 AC_PROG_CC
