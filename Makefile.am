@@ -6,7 +6,7 @@ AUX_DIST_GEN =                          \
 
 EXTRA_DIST = \
 	$(AUX_DIST_GEN) \
-    config.h    	\  
+    config.h    	\
 	Changelog		\
 	DOOMLIC.TXT		\
 	FILES			\
@@ -21,4 +21,4 @@ EXTRA_DIST = \
 MAINTAINERCLEANFILES =  $(AUX_DIST_GEN)
 
 docdir=$(prefix)/share/doc/@PACKAGE@
-SUBDIRS=src 
+SUBDIRS=src
