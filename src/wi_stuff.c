@@ -1652,17 +1652,18 @@ void WI_loadData(void)
      // "secret"
     sp_secret = W_CacheLumpName("WISCRT2", PU_STATIC);
 
-    // Yuck. 
-    if (french)
+    // french wad uses WIOBJ (?)
+    if (M_CheckNumForName("WIOBJ") >= 0)
     {
 	// "items"
 	if (netgame && !deathmatch)
 	    items = W_CacheLumpName("WIOBJ", PU_STATIC);    
   	else
 	    items = W_CacheLumpName("WIOSTI", PU_STATIC);
-    } else
+    } else {
 	items = W_CacheLumpName("WIOSTI", PU_STATIC);
-
+	}
+	
     // "frgs"
     frags = W_CacheLumpName("WIFRGS", PU_STATIC);    
 
