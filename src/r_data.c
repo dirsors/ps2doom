@@ -27,13 +27,13 @@
 static const char
 rcsid[] = "$Id: r_data.c,v 1.4 1997/02/03 16:47:55 b1 Exp $";
 
-#ifdef __BEOS__
+/*#ifdef __BEOS__
 #ifdef __GNUC__
 extern void *alloca(int);
 #else
 #include <alloca.h>
 #endif
-#endif /* __BEOS__ */
+#endif __BEOS__ */
 
 #include "m_swap.h"
 
@@ -322,7 +322,7 @@ void R_GenerateLookup (int texnum)
     //  that are covered by more than one patch.
     // Fill in the lump / offset, so columns
     //  with only a single patch are all done.
-    patchcount = (byte *)alloca (texture->width);
+    patchcount = (byte *) Z_Malloc(texture->width, PU_STATIC, NULL);
     memset (patchcount, 0, texture->width);
     patch = texture->patches;
 		
@@ -373,7 +373,9 @@ void R_GenerateLookup (int texnum)
 	    
 	    texturecompositesize[texnum] += texture->height;
 	}
-    }	
+  }	
+	
+	Z_Free(patchcount)
 }
 
 
@@ -451,7 +453,7 @@ void R_InitTextures (void)
     names = W_CacheLumpName ("PNAMES", PU_STATIC);
     nummappatches = LONG ( *((int *)names) );
     name_p = names+4;
-    patchlookup = alloca (nummappatches*sizeof(*patchlookup));
+    patchlookup = Z_Malloc(nummappatches*sizeof(*patchlookup)PU_STATC, NULL);
     
     for (i=0 ; i<nummappatches ; i++)
     {
@@ -570,6 +572,8 @@ void R_InitTextures (void)
 		
 	totalwidth += texture->width;
     }
+	
+	Z_Free(patchlookup);
 
     Z_Free (maptex1);
     if (maptex2)
@@ -772,7 +776,7 @@ void R_PrecacheLevel (void)
 	return;
     
     // Precache flats.
-    flatpresent = alloca(numflats);
+    flatpresent = Z_Malloc(numflats, PU_STATIC, NULL);
     memset (flatpresent,0,numflats);	
 
     for (i=0 ; i<numsectors ; i++)
@@ -791,10 +795,12 @@ void R_PrecacheLevel (void)
 	    flatmemory += lumpinfo[lump].size;
 	    W_CacheLumpNum(lump, PU_CACHE);
 	}
-    }
-    
+  }
+   
+  Z_Free(flatpresent);
+  
     // Precache textures.
-    texturepresent = alloca(numtextures);
+    texturepresent = Z_Malloc(numtextures, PU_STATIC, NULL);
     memset (texturepresent,0, numtextures);
 	
     for (i=0 ; i<numsides ; i++)
@@ -826,10 +832,12 @@ void R_PrecacheLevel (void)
 	    texturememory += lumpinfo[lump].size;
 	    W_CacheLumpNum(lump , PU_CACHE);
 	}
-    }
-    
+  }
+  
+	Z_Free(texturepresent);
+  
     // Precache sprites.
-    spritepresent = alloca(numsprites);
+    spritepresent = Z_Malloc(numsprites, PU_STATIC, NULL);
     memset (spritepresent,0, numsprites);
 	
     for (th = thinkercap.next ; th != &thinkercap ; th=th->next)
@@ -854,7 +862,9 @@ void R_PrecacheLevel (void)
 		W_CacheLumpNum(lump , PU_CACHE);
 	    }
 	}
-    }
+  }
+  
+  Z_Free(spritepresent);
 }
 
 
