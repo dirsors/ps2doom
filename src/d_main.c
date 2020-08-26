@@ -49,6 +49,7 @@ static int access(char *file, int mode)
 	return(-1);
 }
 
+#include "config.h"
 #include "doomdef.h"
 #include "doomstat.h"
 
@@ -1046,7 +1047,8 @@ printf("added\n");
 		    I_Error("\nThis is not the registered version.");
     }
     
-    // Iff additonal PWAD files are used, print modified banner
+#if 0
+    // If additonal PWAD files are used, print modified banner
     if (modifiedgame)
     {
 	/*m*/printf (
@@ -1087,7 +1089,17 @@ printf("added\n");
 	// Ouch.
 	break;
     }
+#endif
+	printf (
+	    "===========================================================================\n"
+	    " " PACKAGE_NAME " is free software, covered by the GNU General Public\n"
+            " License.  There is NO warranty; not even for MERCHANTABILITY or FITNESS\n"
+            " FOR A PARTICULAR PURPOSE. You are welcome to change and distribute\n"
+            " copies under certain conditions. See the source for more information.\n"
 
+	    "===========================================================================\n"
+	);
+	
     printf ("M_Init: Init miscellaneous info.\n");
     M_Init ();
 
