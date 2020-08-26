@@ -28,6 +28,7 @@ rcsid[] = "$Id: i_x.c,v 1.6 1997/02/03 22:45:10 b1 Exp $";
 
 #include "SDL.h"
 
+#include "config.h"
 #include "m_swap.h"
 #include "doomstat.h"
 #include "i_system.h"
@@ -538,6 +539,22 @@ void I_SetPalette (byte* palette)
     SDL_SetColors(screen, colors, 0, 256);
 }
 
+// 
+// Set the window caption
+//
+
+static void SetCaption(void)
+{
+    char *buf;
+
+    buf = Z_Malloc(strlen(gamedescription) + strlen(PACKAGE_STRING) + 10, 
+                   PU_STATIC, NULL);
+    sprintf(buf, "%s - %s", gamedescription, PACKAGE_STRING);
+
+    SDL_WM_SetCaption(buf, NULL);
+
+    Z_Free(buf);
+}
 
 void I_InitGraphics(void)
 {
@@ -601,8 +618,9 @@ void I_InitGraphics(void)
         I_Error("Could not set %dx%d video mode: %s", video_w, video_h,
 							SDL_GetError());
     }
+	
+	SetCaption();
     SDL_ShowCursor(0);
-    SDL_WM_SetCaption("SDL DOOM! v1.10", "doom");
 
     /* Set up the screen displays */
     w = SCREENWIDTH * multiply;

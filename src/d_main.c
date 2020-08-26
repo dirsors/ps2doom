@@ -759,6 +759,8 @@ static void IdentifyVersion(void)
             gamedescription = "DOOM 2: Plutonia Experiment";
         else if (gamemission == pack_tnt)
             gamedescription = "DOOM 2: TNT - Evilution";
+		else
+            gamedescription = "DOOM 2: ?????????????";
     }
 
     printf("%s\n", gamedescription);
@@ -1016,6 +1018,50 @@ void D_DoomMain (void)
 	printf("Playing demo %s.lmp.\n",myargv[p+1]);
     }
     
+	// init subsystems
+    printf ("V_Init: allocate screens.\n");
+    V_Init ();
+
+	//#ifdef _EE
+	//	SDL_SYS_TimerInit();
+	//#endif
+	
+    printf ("M_LoadDefaults: Load system defaults.\n");
+    M_LoadDefaults ();              // load before initing other systems
+
+    printf ("Z_Init: Init zone memory allocation daemon. \n");
+    Z_Init ();
+
+    printf ("W_Init: Init WADfiles.\n");
+    W_InitMultipleFiles (wadfiles);
+
+    IdentifyVersion();
+
+    // Check for -file in shareware
+    if (modifiedgame)
+    {
+	// These are the lumps that will be checked in IWAD,
+	// if any one is not present, execution will be aborted.
+	char name[23][8]=
+	{
+	    "e2m1","e2m2","e2m3","e2m4","e2m5","e2m6","e2m7","e2m8","e2m9",
+	    "e3m1","e3m3","e3m3","e3m4","e3m5","e3m6","e3m7","e3m8","e3m9",
+	    "dphoof","bfgga0","heada1","cybra1","spida1d1"
+	};
+	int i;
+
+	if ( gamemode == shareware)
+	    I_Error("\nYou cannot -file with the shareware "
+		    "version. Register!");
+
+	// Check for fake IWAD with right name,
+	// but w/o all the lumps of the registered version. 
+	if (gamemode == registered)
+	    for (i = 0;i < 23; i++)
+		if (W_CheckNumForName(name[i])<0)
+		    I_Error("\nThis is not the registered version.");
+    }
+	
     // get skill / episode / map from parms
     startskill = sk_medium;
     startepisode = 1;
@@ -1066,95 +1112,6 @@ void D_DoomMain (void)
 	autostart = true;
     }
     
-    // init subsystems
-    printf ("V_Init: allocate screens.\n");
-    V_Init ();
-
-	//#ifdef _EE
-	//	SDL_SYS_TimerInit();
-	//#endif
-
-
-    printf ("M_LoadDefaults: Load system defaults.\n");
-    M_LoadDefaults ();              // load before initing other systems
-
-    printf ("Z_Init: Init zone memory allocation daemon. \n");
-    Z_Init ();
-
-    printf ("W_Init: Init WADfiles.\n");
-    W_InitMultipleFiles (wadfiles);
-printf("added\n");
-
-	IdentifyVersion();
-
-    // Check for -file in shareware
-    if (modifiedgame)
-    {
-	// These are the lumps that will be checked in IWAD,
-	// if any one is not present, execution will be aborted.
-	char name[23][8]=
-	{
-	    "e2m1","e2m2","e2m3","e2m4","e2m5","e2m6","e2m7","e2m8","e2m9",
-	    "e3m1","e3m3","e3m3","e3m4","e3m5","e3m6","e3m7","e3m8","e3m9",
-	    "dphoof","bfgga0","heada1","cybra1","spida1d1"
-	};
-	int i;
-	
-	if ( gamemode == shareware)
-	    I_Error("\nYou cannot -file with the shareware "
-		    "version. Register!");
-
-	// Check for fake IWAD with right name,
-	// but w/o all the lumps of the registered version. 
-	if (gamemode == registered)
-	    for (i = 0;i < 23; i++)
-		if (W_CheckNumForName(name[i])<0)
-		    I_Error("\nThis is not the registered version.");
-    }
-    
-#if 0
-    // If additonal PWAD files are used, print modified banner
-    if (modifiedgame)
-    {
-	/*m*/printf (
-	    "===========================================================================\n"
-	    "ATTENTION:  This version of DOOM has been modified.  If you would like to\n"
-	    "get a copy of the original game, call 1-800-IDGAMES or see the readme file.\n"
-	    "        You will not receive technical support for modified games.\n"
-	    "                      press enter to continue\n"
-	    "===========================================================================\n"
-	    );
-	getchar ();
-    }
-	
-
-    // Check and print which version is executed.
-    switch ( gamemode )
-    {
-      case shareware:
-      case indetermined:
-	printf (
-	    "===========================================================================\n"
-	    "                                Shareware!\n"
-	    "===========================================================================\n"
-	);
-	break;
-      case registered:
-      case retail:
-      case commercial:
-	printf (
-	    "===========================================================================\n"
-	    "                 Commercial product - do not distribute!\n"
-	    "         Please report software piracy to the SPA: 1-800-388-PIR8\n"
-	    "===========================================================================\n"
-	);
-	break;
-	
-      default:
-	// Ouch.
-	break;
-    }
-#endif
 	printf (
 	    "===========================================================================\n"
 	    " " PACKAGE_NAME " is free software, covered by the GNU General Public\n"
