@@ -64,12 +64,7 @@ extern char 				*gamedescription
 // Set if homebrew PWAD stuff has been added.
 extern  boolean	modifiedgame;
 
-
-// -------------------------------------------
-// Language.
-extern  Language_t   language;
-
-
+//
 // -------------------------------------------
 // Selected skill type, map etc.
 //
