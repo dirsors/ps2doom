@@ -119,7 +119,6 @@ static void LoadDiskImage(void)
     V_DrawPatch(0, 0, 0, disk);
     disk_image_w = SHORT(disk->width);
     disk_image_h = SHORT(disk->height);
-    printf("%i, %i\n", disk_image_w, disk_image_h);
 
     disk_image = Z_Malloc(disk_image_w * disk_image_h, PU_STATIC, NULL);
     saved_background = Z_Malloc(disk_image_w * disk_image_h, PU_STATIC, NULL);
@@ -715,7 +714,7 @@ void I_InitGraphics(void)
     if (multiply == 1 && !SDL_MUSTLOCK(screen) ) {
 	screens[0] = (unsigned char *) screen->pixels;
     } else {
-	screens[0] = (unsigned char *) malloc (SCREENWIDTH * SCREENHEIGHT);
+	screens[0] = (unsigned char *) Z_Malloc (SCREENWIDTH * SCREENHEIGHT);
         if ( screens[0] == NULL )
             I_Error("Couldn't allocate screen memory");
     }
