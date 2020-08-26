@@ -1,10 +1,7 @@
-dnl Process this file with autoconf to produce a configure script.
-AC_INIT(README.b)
+AC_INIT(SDLDOOM, 1.10, Sam Lantinga, sdldoom)
+AC_CONFIG_AUX_DIR(autotools)
 
-dnl Setup for automake
 AM_INIT_AUTOMAKE(sdldoom, 1.10)
-
-dnl Check for tools
 
 AC_PROG_MAKE_SET
 AC_PROG_CC
@@ -19,7 +16,11 @@ AM_PATH_SDL($SDL_VERSION,
 CFLAGS="$CFLAGS $SDL_CFLAGS"
 LIBS="$LIBS $SDL_LIBS"
 
-# Finally create all the generated files
+AM_CONFIG_HEADER(config.h:config.hin)
+
+AC_SUBST(ac_aux_dir)
+
 AC_OUTPUT([
 Makefile
+src/Makefile
 ])
