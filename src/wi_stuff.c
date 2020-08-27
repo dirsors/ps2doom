@@ -1653,7 +1653,7 @@ void WI_loadData(void)
     sp_secret = W_CacheLumpName("WISCRT2", PU_STATIC);
 
     // french wad uses WIOBJ (?)
-    if (M_CheckNumForName("WIOBJ") >= 0)
+    if (W_CheckNumForName("WIOBJ") >= 0)
     {
 	// "items"
 	if (netgame && !deathmatch)
