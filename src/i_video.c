@@ -714,7 +714,7 @@ void I_InitGraphics(void)
     if (multiply == 1 && !SDL_MUSTLOCK(screen) ) {
 	screens[0] = (unsigned char *) screen->pixels;
     } else {
-	screens[0] = (unsigned char *) Z_Malloc (SCREENWIDTH * SCREENHEIGHT);
+	screens[0] = (unsigned char *) Z_Malloc (SCREENWIDTH * SCREENHEIGHT, PU_STATIC, NULL);
         if ( screens[0] == NULL )
             I_Error("Couldn't allocate screen memory");
     }
