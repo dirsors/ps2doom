@@ -878,7 +878,7 @@ void D_DoomMain (void)
 
     FindResponseFile ();
 	
-    FindWAD ();
+    FindIWAD ();
 	
     setbuf (stdout, NULL);
     modifiedgame = false;
