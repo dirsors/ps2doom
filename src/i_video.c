@@ -706,7 +706,7 @@ void I_InitGraphics(void)
 	SetCaption();
     SDL_ShowCursor(0);
 	
-	LoadDiskImage(0);
+	LoadDiskImage();
 
     /* Set up the screen displays */
     w = SCREENWIDTH * multiply;
