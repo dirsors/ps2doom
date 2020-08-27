@@ -375,7 +375,7 @@ void R_GenerateLookup (int texnum)
 	}
   }	
 	
-	Z_Free(patchcount)
+	Z_Free(patchcount);
 }
 
 
@@ -453,7 +453,7 @@ void R_InitTextures (void)
     names = W_CacheLumpName ("PNAMES", PU_STATIC);
     nummappatches = LONG ( *((int *)names) );
     name_p = names+4;
-    patchlookup = Z_Malloc(nummappatches*sizeof(*patchlookup)PU_STATC, NULL);
+    patchlookup = Z_Malloc(nummappatches*sizeof(*patchlookup),PU_STATC, NULL);
     
     for (i=0 ; i<nummappatches ; i++)
     {
