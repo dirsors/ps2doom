@@ -1107,7 +1107,7 @@ static char *M_SelectEndMessage(void)
 
 void M_QuitDOOM(int choice)
 {
-    sprintf(endstring,"%s\n\n" 	DOSY, M_SelectEndMeassage());
+    sprintf(endstring,"%s\n\n" 	DOSY, M_SelectEndMessage());
 	
 	M_StartMessage(endstring,M_QuitResponse,true);
 }
