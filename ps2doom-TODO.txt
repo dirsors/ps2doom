@@ -1,0 +1,8 @@
+PS2Doom - Playstation 2 Doom Source Port. List of things to do:
+
+- Improve sound quality - sample rate of 44.1khz and a bit depth of 16 bits per sample, stereo, with 8 simultaneous channels (minimum). 32 Channels would be great.
+- Add music support.
+- Improve graphics quality up to the 480i, 480p and up-scaled 1080i resolution. Progressive scan option, also.
+- Add cheat code support. Reuse the code from PSPDoom Version 1.4 by Chilly Willy. It's just perfect.
+
+
