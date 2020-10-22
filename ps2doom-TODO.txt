@@ -4,5 +4,9 @@ PS2Doom - Playstation 2 Doom Source Port. List of things to do:
 - Add music support.
 - Improve graphics quality up to the 480i, 480p and up-scaled 1080i resolution. Progressive scan option, also.
 - Add cheat code support. Reuse the code from PSPDoom Version 1.4 by Chilly Willy. It's just perfect.
+- Message output when revealing secrets: "You found a secret area!".
+- Support for demo recording and playback.
+- Support for some command line parameters like "No Monsters", "Fast Monsters", "Respawn Monsters" and others.
+- Support for loading PWADs files.
 
 
