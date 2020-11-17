@@ -1,0 +1,17 @@
+COPY
+INSTALL
+Makefile
+Makefile.in
+aclocal.m4
+autom4te.cache/
+autotools/
+config.h
+config.hin
+config.log
+config.status
+configure
+src/.deps/
+src/*.o
+src/Makefile
+src/Makefile.in
+stamp-h1
