@@ -1,7 +1,7 @@
 #include <tamtypes.h>
 //#include <floatlib.h>
 #include <stdio.h>
-
+#include <string.h>
 #include "d_main.h"
 
 int gethostname(char *name, int len)
