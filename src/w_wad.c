@@ -35,6 +35,7 @@ rcsid[] = "$Id: w_wad.c,v 1.5 1997/02/03 16:47:57 b1 Exp $";
 #include "doomtype.h"
 #include "i_system.h"
 #include "z_zone.h"
+#include "i_video.h"
 
 #ifdef __GNUG__
 #pragma implementation "w_wad.h"
