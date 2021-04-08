@@ -1,5 +1,4 @@
 #include <tamtypes.h>
-//#include <floatlib.h>
 #include <stdio.h>
 #include <string.h>
 #include "d_main.h"
@@ -14,10 +13,10 @@ u32 inet_addr(const char *cp)
 	return 0;
 }
 
-float pow(float a, float b)
+/*float pow(float a, float b)
 {
 	return powf(a,b);
-}
+}*/
 
 //**********************************************************************
 // ps2doom cheat support - code typing
