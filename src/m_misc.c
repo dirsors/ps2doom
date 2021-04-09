@@ -317,7 +317,7 @@ void M_LoadDefaults (void)
     FILE*	f;
     char	def[80];
     char	strparm[100];
-    char*	newstring;
+    char*	newstring=0;
     int		parm;
     boolean	isstring;
     
