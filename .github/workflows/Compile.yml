@@ -22,11 +22,10 @@ jobs:
     - run: |
         git fetch --prune --unshallow
 
-   
-
     - name: Compile doom
       run: |
-        make clean all
+        make clean 
+        make all
         ls
     
     - name: Get short SHA
