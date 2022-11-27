@@ -19,8 +19,6 @@ jobs:
         apk add build-base git zip
 
     - uses: actions/checkout@v3
-    - run: |
-        git fetch --prune --unshallow
 
     - name: Compile doom
       run: |
