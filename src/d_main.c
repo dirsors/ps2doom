@@ -1109,7 +1109,7 @@ void D_DoomMain (void)
     ps2_printf ("HU_Init: Setting up heads up display.\n", 3);
     HU_Init ();
 
-    ps2^printf ("ST_Init: Init status bar.\n", 3);
+    ps2_printf ("ST_Init: Init status bar.\n", 3);
     ST_Init ();
 
     // check for a driver that wants intermission stats
