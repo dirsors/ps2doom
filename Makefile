@@ -11,9 +11,9 @@ src/st_lib.o src/st_stuff.o src/tables.o src/v_video.o src/w_wad.o src/wi_stuff.
 
 EE_BIN = doom.elf
 
-EE_INCS = -I$(PS2SDK)/ports/include/SDL
-EE_LDFLAGS = -L$(PS2SDK)/ports/lib -L$(PS2DEV)/gsKit/lib 
-EE_LIBS = -lsdlmain -lsdl -lgskit -lcdvd -lm -lps2ip -lnetman
+EE_INCS = -I$(PS2SDK)/ports/include/SDL -I$(PS2SDK)/ee/include
+EE_LDFLAGS = -L$(PS2SDK)/ports/lib -L$(PS2DEV)/gsKit/lib -L$(PS2SDK)/ee/lib
+EE_LIBS = -lsdlmain -lsdl -lgskit -lcdvd -lm -lps2ip -lnetman -lps2_printf -ldebug
 EE_CFLAGS = -DHAVE_CONFIG_H -D_GNU_SOURCE=1 -D_REENTRANT -Wall
 
 all: $(EE_BIN)

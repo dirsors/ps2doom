@@ -31,6 +31,7 @@ rcsid[] = "$Id: i_main.c,v 1.4 1997/02/03 22:45:10 b1 Exp $";
 
 #include "m_argv.h"
 #include "d_main.h"
+#include <ps2_printf.h>
 
 int
 main
@@ -39,7 +40,9 @@ main
 { 
     myargc = argc; 
     myargv = argv; 
- 
+
+    ps2_printf("D_DoomMain() started", 2);
+
     D_DoomMain (); 
 
     return 0;
