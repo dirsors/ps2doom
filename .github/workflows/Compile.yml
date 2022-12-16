@@ -22,7 +22,7 @@ jobs:
     
     - name: git and make libps2_printf
       run: |
-        git clonehttps://github.com/wolfysdl/libps2_printf.git && cd libps2_printf && make install 
+        git clone https://github.com/wolfysdl/libps2_printf.git && cd libps2_printf && make install 
 
     - name: Compile doom
       run: |
