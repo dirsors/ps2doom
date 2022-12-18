@@ -34,6 +34,7 @@ static const char rcsid[] = "$Id: d_main.c,v 1.8 1997/02/03 22:45:09 b1 Exp $";
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <ps2_printf.h>
 
 //extern int access(char *file, int mode);
 
@@ -980,20 +981,20 @@ void D_DoomMain (void)
     }
     
 	// init subsystems
-    printf ("V_Init: allocate screens.\n");
+    ps2_printf ("V_Init: allocate screens.\n", 2);
     V_Init ();
 
 	//#ifdef _EE
 	//	SDL_SYS_TimerInit();
 	//#endif
 	
-    printf ("M_LoadDefaults: Load system defaults.\n");
+   ps2_printf("M_LoadDefaults: Load system defaults.\n", 2);
     M_LoadDefaults ();              // load before initing other systems
 
-    printf ("Z_Init: Init zone memory allocation daemon. \n");
+    ps2_printf("Z_Init: Init zone memory allocation daemon. \n", 2);
     Z_Init ();
 
-    printf ("W_Init: Init WADfiles.\n");
+    ps2_printf("W_Init: Init WADfiles.\n", 2);
     W_InitMultipleFiles (wadfiles);
 
     IdentifyVersion();
@@ -1087,28 +1088,28 @@ void D_DoomMain (void)
 	    "===========================================================================\n"
 	);
 	
-    printf ("M_Init: Init miscellaneous info.\n");
+    ps2_printf ("M_Init: Init miscellaneous info.\n", 3);
     M_Init ();
 
-    printf ("R_Init: Init DOOM refresh daemon - ");
+    ps2_printf ("R_Init: Init DOOM refresh daemon - ", 3);
     R_Init ();
 
-    printf ("\nP_Init: Init Playloop state.\n");
+    ps2_printf ("\nP_Init: Init Playloop state.\n", 3);
     P_Init ();
 
-    printf ("I_Init: Setting up machine state.\n");
+    ps2_printf ("I_Init: Setting up machine state.\n", 3);
     I_Init ();
 
-    printf ("D_CheckNetGame: Checking network game status.\n");
+    ps2_printf ("D_CheckNetGame: Checking network game status.\n", 3);
     D_CheckNetGame ();
 
-    printf ("S_Init: Setting up sound.\n");
+    ps2_printf ("S_Init: Setting up sound.\n", 3);
     S_Init (snd_SfxVolume /* *8 */, snd_MusicVolume /* *8*/ );
 
-    printf ("HU_Init: Setting up heads up display.\n");
+    ps2_printf ("HU_Init: Setting up heads up display.\n", 3);
     HU_Init ();
 
-    printf ("ST_Init: Init status bar.\n");
+    ps2_printf ("ST_Init: Init status bar.\n", 3);
     ST_Init ();
 
     // check for a driver that wants intermission stats

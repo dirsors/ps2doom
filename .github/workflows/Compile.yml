@@ -19,6 +19,10 @@ jobs:
         apk add build-base git zip
 
     - uses: actions/checkout@v3
+    
+    - name: git and make libps2_printf
+      run: |
+        git clone https://github.com/wolfysdl/libps2_printf.git && cd libps2_printf && make install 
 
     - name: Compile doom
       run: |
