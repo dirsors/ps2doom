@@ -506,8 +506,9 @@ void I_FinishUpdate (void)
     if ( SDL_MUSTLOCK(screen) ) {
 	SDL_UnlockSurface(screen);
     }
-
+#ifndef _EE
     SDL_UpdateRect(screen, 0, 0, 0, 0);
+#endif
 	SDL_Flip(screen);
 }
 
