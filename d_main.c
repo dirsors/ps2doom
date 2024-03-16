@@ -562,15 +562,15 @@ void IdentifyVersion (void)
 
     char *home;
     char *doomwaddir;
+
     doomwaddir = getenv("DOOMWADDIR");
 
-	#ifdef _EE
-		doomwaddir = "";
-	#else
     if (!doomwaddir)
+#ifdef _EE
+		doomwaddir = "";
+#else
 		doomwaddir = "./";
-	#endif
-
+#endif
     // Commercial.
     doom2wad = malloc(strlen(doomwaddir)+1+9+1);
     sprintf(doom2wad, "%sdoom2.wad", doomwaddir);
