@@ -1093,19 +1093,42 @@ void M_QuitResponse(int ch)
     I_Quit ();
 }
 
+static char *M_SelectEndMessage(void)
+{
+    char **endmsg;
 
+    if (gamemode == commercial)
+    {
+        // Doom 2
+
+        endmsg = doom2_endmsg;
+    }
+    else
+    {
+        // Doom 1
+
+        endmsg = doom1_endmsg;
+    }
+
+    return endmsg[gametic % NUM_QUITMESSAGES];
+}
 
 
 void M_QuitDOOM(int choice)
 {
-  // We pick index 0 which is language sensitive,
+	
+	sprintf(endstring,"%s\n\n" 	DOSY, M_SelectEndMessage());
+
+	M_StartMessage(endstring,M_QuitResponse,true);
+	
+  /*// We pick index 0 which is language sensitive,
   //  or one at random, between 1 and maximum number.
   if (language != english )
     sprintf(endstring,"%s\n\n"DOSY, endmsg[0] );
   else
     sprintf(endstring,"%s\n\n"DOSY, endmsg[ (gametic%(NUM_QUITMESSAGES-2))+1 ]);
   
-  M_StartMessage(endstring,M_QuitResponse,true);
+  M_StartMessage(endstring,M_QuitResponse,true);*/
 }
 
 
