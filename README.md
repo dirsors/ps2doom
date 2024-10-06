@@ -6,7 +6,7 @@ Fixes implemented so far:
 - IDCLEV cheat bug;
 - some minor errors on code, like lack of variable types declaration.
 
-  Please, have a look at the binary and try it out. Thankyou!
+  Please, have a look at the binary and try it out. Check the "duarte" branch. Thankyou!
   
 PS2 Doom
 ========
