@@ -1,3 +1,13 @@
+Hi.
+This fork have some minor bugfixes for PS2 Doom.
+Fixes implemented so far:
+- Switches flipped that doesn't animate;
+- ouch face bug;
+- IDCLEV cheat bug;
+- some minor errors on code, like lack of variable types declaration.
+
+  Please, have a look at the binary and try it out. Thankyou!
+  
 PS2 Doom
 ========
 
