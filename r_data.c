@@ -76,7 +76,7 @@ typedef struct
     short	patch;
     short	stepdir;
     short	colormap;
-} mappatch_t;
+} __attribute__((packed)) mappatch_t;
 
 
 //
@@ -93,7 +93,7 @@ typedef struct
     void		**columndirectory;	// OBSOLETE
     short		patchcount;
     mappatch_t	patches[1];
-} maptexture_t;
+} __attribute__((packed)) maptexture_t;
 
 
 // A single patch from a texture definition,
