@@ -15,7 +15,7 @@ EE_BIN = ps2doom.elf
 EE_INCS = -I$(PS2SDK)/ports/include/SDL -I$(PS2SDK)/ports/include
 EE_LDFLAGS = -L$(PS2SDK)/ports/lib -L$(PS2DEV)/gsKit/lib 
 EE_LIBS = -lsdlmain -lsdlmixer -lsdl -lgskit -lcdvd -lmf -lps2ip -ldebug -lconfig -lmc -lc -lhdd -lfileXio -lpoweroff
-EE_CFLAGS = -DUSE_RWOPS -DHAVE_CONFIG_H -DHAVE_MIXER #-g
+EE_CFLAGS = -DUSE_RWOPS -DHAVE_CONFIG_H -DHAVE_MIXER -std=gnu17
 
 all: $(EE_BIN)
 
