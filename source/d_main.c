@@ -1635,7 +1635,7 @@ void D_DoomMain (void)
     V_Init ();
 
 	#ifdef _EE
-		SDL_SYS_TimerInit();
+		//SDL_SYS_TimerInit();
 	#endif
 
 
