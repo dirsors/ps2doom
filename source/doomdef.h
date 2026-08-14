@@ -25,7 +25,7 @@
 
 #include <stdio.h>
 #include <string.h>
-
+#include <kernel.h>
 /// cosmito
 #define DOMULTITASK RotateThreadReadyQueue(42)
 #define pf printf
