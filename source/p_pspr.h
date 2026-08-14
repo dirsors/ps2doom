@@ -74,7 +74,10 @@ typedef struct
 
 } pspdef_t;
 
+typedef struct player_s player_t;
 
+int P_NextWeapon(player_t *player);
+int P_PreviousWeapon(player_t *player);
 
 #endif
 //-----------------------------------------------------------------------------
