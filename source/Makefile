@@ -17,8 +17,7 @@ EE_BIN = ps2doom.elf
 EE_INCS = \
     -I$(PS2SDK)/ports/include/SDL \
     -I$(PS2SDK)/ports/include \
-    -I$(GSKIT)/ee/gs/include \
-    -I$(GSKIT)/ee/dma/include
+    -I$(PS2DEV)/gsKit/include
 
 EE_LDFLAGS = \
     -L$(PS2SDK)/ports/lib \
