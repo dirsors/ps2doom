@@ -38,7 +38,9 @@ typedef bool boolean;
 #undef true
 #define true D_true
 #endif
-typedef enum {false, true} boolean;
+#include <stdbool.h>
+
+typedef bool boolean;
 #endif
 typedef unsigned char byte;
 #endif
