@@ -32,6 +32,32 @@ rcsid[] = "$Id: i_main.c,v 1.4 1997/02/03 22:45:10 b1 Exp $";
 #include "m_argv.h"
 #include "d_main.h"
 
+#include <ps2_all_drivers.h>
+
+
+static void init_drivers(void) {
+//    init_fileXio_driver();
+    init_memcard_driver(true);
+//    init_usb_driver(true);
+//    init_cdfs_driver();
+//    init_joystick_driver(true);
+//    init_audio_driver();
+//    init_poweroff_driver();
+//    init_hdd_driver(true, true);
+}
+
+static void deinit_drivers(void) {
+//    deinit_poweroff_driver();
+//    deinit_audio_driver();
+//    deinit_joystick_driver(false);
+//    deinit_usb_driver(false);
+//    deinit_cdfs_driver();
+    deinit_memcard_driver(true);
+//    deinit_hdd_driver(false);
+//    deinit_fileXio_driver();
+}
+
+
 int
 main
 ( int		argc,
@@ -40,6 +66,8 @@ main
     myargc = argc; 
     myargv = argv; 
  
+    init_drivers();
+
     D_DoomMain (); 
 
     return 0;
