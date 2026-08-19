@@ -33,7 +33,7 @@ rcsid[] = "$Id: i_main.c,v 1.4 1997/02/03 22:45:10 b1 Exp $";
 #include "d_main.h"
 
 #include <ps2_all_drivers.h>
-
+#include <debug.h>
 
 static void init_drivers(void) {
 //    init_fileXio_driver();
@@ -67,6 +67,7 @@ main
     myargv = argv; 
  
     init_drivers();
+    init_scr();
 
     D_DoomMain (); 
 
