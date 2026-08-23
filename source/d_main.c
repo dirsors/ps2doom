@@ -1020,7 +1020,7 @@ void checkForWadFile(char* wadname, char** foundwadfiles, char* foundfile, int* 
 {
     if ( !access (wadname, R_OK) )
     {
-        scr_printf_nocursor("    %s\n", wadname);
+        scr_printf("    %s\n", wadname);
         *nWadsFound = *nWadsFound + 1;
 
         foundfile = malloc( strlen(wadname)+1 );
@@ -1172,7 +1172,7 @@ void IdentifyVersionAndSelect (void)        // cosmito
 
 
     /// start wad prompt
-    scr_printf_nocursor("Point to a WAD with 'dpad Up' and 'dpad Up' and select with 'X' or 'O'\n");
+    scr_printf("Point to a WAD with 'dpad Up' and 'dpad Up' and select with 'X' or 'O'\n");
     
     int ymin = 6, nWadsFound = 0;
     int y = ymin;
@@ -1196,7 +1196,7 @@ void IdentifyVersionAndSelect (void)        // cosmito
     if (nWadsFound > 0)
     {
         scr_setXY(0,y);
-        scr_printf_nocursor("->");
+        scr_printf("->");
 
         int butres = 0;
         u32 old_pad = 0;
@@ -1218,22 +1218,22 @@ void IdentifyVersionAndSelect (void)        // cosmito
             if(butres == PAD_UP)
             {
                 scr_setXY(0,y);
-                scr_printf_nocursor("  ");
+                scr_printf("  ");
                 y--;
                 if(y < ymin)
                     y = ymin;
                 scr_setXY(0,y);
-                scr_printf_nocursor("->");
+                scr_printf("->");
             }
             else if(butres == PAD_DOWN)
             {
                 scr_setXY(0,y);
-                scr_printf_nocursor("  ");
+                scr_printf("  ");
                 y++;
                 if(y > ymax)
                     y = ymax;
                 scr_setXY(0,y);
-                scr_printf_nocursor("->");
+                scr_printf("->");
             }
             else if(butres == PAD_CROSS || butres == PAD_CIRCLE)
             {
@@ -1246,7 +1246,7 @@ void IdentifyVersionAndSelect (void)        // cosmito
         }
 
         scr_setXY(0,ymax+1);
-        scr_printf_nocursor("\n\n");
+        scr_printf("\n\n");
         padPortClose(port, slot);
 
         // find out which wad selected

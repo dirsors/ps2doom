@@ -34,7 +34,7 @@ extern void *alloca(int);
 #include <alloca.h>
 #endif
 #endif  __BEOS__ */
-
+#include <debug.h>
 #include "m_swap.h"
 
 #include "i_system.h"

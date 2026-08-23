@@ -29,6 +29,7 @@
 //
 // GAME
 //
+extern char currentWadName[20];
 void G_DeathMatchSpawnPlayer (int playernum);
 
 void G_InitNew (skill_t skill, int episode, int map);

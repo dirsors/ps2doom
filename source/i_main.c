@@ -36,16 +36,18 @@ rcsid[] = "$Id: i_main.c,v 1.4 1997/02/03 22:45:10 b1 Exp $";
 #include <sifrpc.h>
 
 //#ifdef PS2HDD
-#include <fileio.h>
-#include <fileXio.h>
+//#include <fileio.h>
+	//#include <fileXio.h>
 #include <debug.h>
 #include <libhdd.h>
 #include <libpwroff.h>
-#include <fileXio_rpc.h>
+//#include <fileXio_rpc.h>
 #include <loadfile.h>
 #include <tamtypes.h> 
 #include <signal.h>
 #include <stdio.h>
+#include <fcntl.h>
+#include <unistd.h>
 #include <stdlib.h>
 #define MAX_PARTITIONS   100
 //#endif
@@ -247,7 +249,7 @@ int main( int argc, char**	argv )
 	SifInitRpc(0); 
 
     init_scr();
-    scr_printf_nocursor("                           --==== PS2DOOM v1.0.5.0 ====--\n\n\n");
+    scr_printf("                           --==== PS2DOOM v1.0.5.0 ====--\n\n\n");
 
     int ret;
     printf("sample: kicking IRXs\n");
@@ -335,14 +337,14 @@ int main( int argc, char**	argv )
         printf("mc0 trouble... should save to other device... To implement\n");  /// TBD
     
     // create save/load dir (mc0:PS2DOOM)
-    int handle = fioOpen ("mc0:PS2DOOM/doomsav0.dsg", O_RDONLY);
+    int handle = open ("mc0:PS2DOOM/doomsav0.dsg", O_RDONLY);
     if (handle < 0)
     {
-        fioMkdir("mc0:PS2DOOM"); // Make sure it exists
+        mkdir("mc0:PS2DOOM", 0777); // Make sure it exists
         printf(" ... created mc0:PS2DOOM ...\n");
     }
     else
-        fioClose(handle);
+        close(handle);
 
 
     /// config
@@ -547,7 +549,7 @@ int main( int argc, char**	argv )
         }
 
         int mountErr = 0;
-        mountErr = fileXioMount( "pfs0:", hdd_path_to_partition, FILEXIO_MOUNT );
+        //mountErr = fileXioMount( "pfs0:", hdd_path_to_partition, FILEXIO_MOUNT );
         
         if( mountErr < 0 )
         {
@@ -568,22 +570,22 @@ int main( int argc, char**	argv )
     Mixer_Init();       // TBD : arg number channels
 
     // Until sdl isn't fixed
-    int PAL = detect_signal();
+    /*int PAL = detect_signal();
     if (PAL == 1)
         PS2SDL_ForceSignal(0);
     else
-        PS2SDL_ForceSignal(1);
+        PS2SDL_ForceSignal(1);*/
 
     // Changes accordingly to filename
     forceDisplayMode = getDisplayModeFromELFName(argv);
     if (forceDisplayMode != -1)
-        PS2SDL_ForceSignal(forceDisplayMode);
+     //   PS2SDL_ForceSignal(forceDisplayMode);
 
     // Sets SAMPLECOUNT accordingly to system
-    if (PAL == 1)
-        SAMPLECOUNT = 960;
-    else
-        SAMPLECOUNT = 800;
+    //if (PAL == 1)
+    //    SAMPLECOUNT = 960;
+    //else
+    //    SAMPLECOUNT = 800;
 
 
     D_DoomMain (); 

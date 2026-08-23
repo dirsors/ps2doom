@@ -27,11 +27,11 @@ rcsid[] = "$Id: m_menu.c,v 1.7 1997/02/03 22:45:10 b1 Exp $";
 
 #include <stdio.h>
 #include <ctype.h>
-
+#include <fcntl.h>
 #include "m_swap.h"
 #include "doomdef.h"
 #include "dstrings.h"
-
+#include <unistd.h>
 #include "d_main.h"
 
 #include "i_system.h"
@@ -65,7 +65,7 @@ extern boolean		message_dontfuckwithme;
 
 extern boolean		chat_on;		// in heads-up code
 
-char		currentWadName[20];
+extern char		currentWadName[20];
 
 //
 // defaulted values
@@ -519,7 +519,7 @@ void M_ReadSaveStrings(void)
 	sprintf(name,"mc0:PS2DOOM/%s%d.dsg",currentWadName,i);
 
 	//handle = fopen (name, "r");
-    handle = fioOpen(name, O_RDONLY);
+    handle = open(name, O_RDONLY);
 	if (/*handle == NULL || */handle < 0)
 	{
 	    strcpy(&savegamestrings[i][0],EMPTYSTRING);
@@ -527,9 +527,9 @@ void M_ReadSaveStrings(void)
 	    continue;
 	}
 	//count = fread (&savegamestrings[i], 1, SAVESTRINGSIZE, handle);
-    count = fioRead (handle, &savegamestrings[i], SAVESTRINGSIZE);
+    count = read (handle, &savegamestrings[i], SAVESTRINGSIZE);
 	//fclose (handle);
-    fioClose (handle);
+    close (handle);
 	LoadMenu[i].status = 1;
     }
 }

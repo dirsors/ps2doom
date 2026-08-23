@@ -8,8 +8,8 @@ p_mobj.o p_plats.o p_pspr.o p_saveg.o p_setup.o p_sight.o p_spec.o \
 p_switch.o p_telept.o p_tick.o p_user.o r_bsp.o r_data.o r_draw.o \
 r_main.o r_plane.o r_segs.o r_sky.o r_things.o s_sound.o sounds.o \
 st_lib.o st_stuff.o tables.o v_video.o w_wad.o wi_stuff.o z_zone.o \
-ps2doom.o mixer_thread.o mixer.o cosmitoFileIO.o sjpcm_rpc.o usbd.s \
-usbhdfsd.s SJPCM.s freesd.s iomanX.o fileXio.o ps2dev9.o ps2atad.o \
+ps2doom.o mixer_thread.o mixer.o cosmitoFileIO.o sjpcm_rpc.o usbd.o \
+usbhdfsd.o SJPCM.o freesd.o iomanX.o fileXio.o ps2dev9.o ps2atad.o \
 ps2fs.o ps2hdd.o poweroff.o
 
 EE_BIN = ps2doom.elf
@@ -29,11 +29,12 @@ EE_LIBS = \
     -lsdl \
     -lgskit \
     -lcdvd \
-    -lmf \
+    -ldmakit \
     -lps2ip \
     -ldebug \
     -lconfig \
-    -lmc -lc \
+    -lmc \
+    -lc \
     -lhdd \
     -lfileXio \
     -lpoweroff
@@ -51,38 +52,38 @@ run:
 reset:
 	ps2client reset
 
-usbd.s : usbd.irx
-	bin2s usbd.irx usbd.s usbd
+usbd.c : usbd.irx
+	bin2c usbd.irx usbd.c usbd
 
-usbhdfsd.s : usbhdfsd.irx
-	bin2s usbhdfsd.irx usbhdfsd.s usbhdfsd
+usbhdfsd.c : usbhdfsd.irx
+	bin2c usbhdfsd.irx usbhdfsd.c usbhdfsd
 
-SJPCM.s : SJPCM.IRX
-	bin2s SJPCM.IRX SJPCM.s SJPCM
+SJPCM.c : SJPCM.IRX
+	bin2c SJPCM.IRX SJPCM.c SJPCM
 
-freesd.s : freesd-1.01.irx
-	bin2s freesd-1.01.irx freesd.s freesd
+freesd.c : freesd-1.01.irx
+	bin2c freesd-1.01.irx freesd.c freesd
 
-iomanX.s : iomanX.irx
-	bin2s iomanX.irx iomanX.s iomanX
+iomanX.c : iomanX.irx
+	bin2c iomanX.irx iomanX.c iomanX
 
-fileXio.s : fileXio.irx
-	bin2s fileXio.irx fileXio.s fileXio
+fileXio.c : fileXio.irx
+	bin2c fileXio.irx fileXio.c fileXio
 
-ps2dev9.s : ps2dev9.irx
-	bin2s ps2dev9.irx ps2dev9.s ps2dev9
+ps2dev9.c : ps2dev9.irx
+	bin2c ps2dev9.irx ps2dev9.c ps2dev9
 
-ps2atad.s : ps2atad.irx
-	bin2s ps2atad.irx ps2atad.s ps2atad
+ps2atad.c : ps2atad.irx
+	bin2c ps2atad.irx ps2atad.c ps2atad
 
-ps2hdd.s : ps2hdd.irx
-	bin2s ps2hdd.irx ps2hdd.s ps2hdd
+ps2hdd.c : ps2hdd.irx
+	bin2c ps2hdd.irx ps2hdd.c ps2hdd
 
-ps2fs.s : ps2fs.irx
-	bin2s ps2fs.irx ps2fs.s ps2fs
+ps2fs.c : ps2fs.irx
+	bin2c ps2fs.irx ps2fs.c ps2fs
 
-poweroff.s : poweroff.irx
-	bin2s poweroff.irx poweroff.s poweroff
+poweroff.c : poweroff.irx
+	bin2c poweroff.irx poweroff.c poweroff
 
 
 include $(PS2SDK)/samples/Makefile.pref

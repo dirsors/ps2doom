@@ -3,8 +3,9 @@
 #include <tamtypes.h>
 #include <ps2lib_err.h>
 #include <kernel.h>
+#include <rom0_info.h>
 #include <sifrpc.h>
-
+#include <stdio.h>
 #include "mixer_thread.h"
 #include "mixer.h"
 

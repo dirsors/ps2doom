@@ -33,7 +33,8 @@ rcsid[] = "$Id: s_sound.c,v 1.10 1999/10/12 13:01:14 cphipps Exp $";
 
 // killough 3/7/98: modified to allow arbitrary listeners in spy mode
 // killough 5/2/98: reindented, removed useless code, beautified
-
+#include "i_system.h"
+#include <stdlib.h>
 #include "doomstat.h"
 #include "s_sound.h"
 

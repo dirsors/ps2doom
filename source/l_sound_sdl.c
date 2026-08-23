@@ -36,6 +36,7 @@ rcsid[] = "$Id: i_unix.c,v 1.5 1997/02/03 22:45:10 b1 Exp $";
 #include <SDL_mutex.h>
 #include <SDL_byteorder.h>
 #include <SDL_version.h>
+#include <stdlib.h>
 
 #include "z_zone.h"
 
