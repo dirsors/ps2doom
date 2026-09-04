@@ -25,7 +25,7 @@
 static const char
 rcsid[] = "$Id: w_wad.c,v 1.5 1997/02/03 16:47:57 b1 Exp $";
 
-
+#include <debug.h>
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
@@ -69,11 +69,11 @@ int filelength (FILE *handle)
     unsigned long pos, size;
     
     pos = ftell(handle);
-printf("Position was %lu\n", pos);
+scr_printf("Position was %lu\n", pos);
     fseek(handle, 0, SEEK_END);
     size = ftell(handle);
     fseek(handle, pos, SEEK_SET);
-printf("Size is %lu\n", size);
+scr_printf("Size is %lu\n", size);
 
     return (int)size;
 }
@@ -167,11 +167,11 @@ void W_AddFile (char *filename)
 		
     if ( (handle = fopen (filename,"rb")) == NULL)
     {
-	printf (" couldn't open %s\n",filename);
+	scr_printf (" couldn't open %s\n",filename);
 	return;
     }
 
-    printf (" adding %s\n",filename);
+    scr_printf (" adding %s\n",filename);
     startlump = numlumps;
 	
     if (I_strncasecmp (filename+strlen(filename)-3 , "wad", 3 ) )
@@ -438,7 +438,7 @@ int ps2_fread(void *dest, int num, int size, FILE *fd)
 
 		int size = ftell(fd);
 
-		printf("file: %i size: %i\n", fd, size);
+		scr_printf("file: %i size: %i\n", fd, size);
 
 		ps2_buffer = (char*)malloc(size);
 
@@ -530,13 +530,13 @@ W_CacheLumpNum
     {
 	// read the lump in
 	
-	//printf ("cache miss on lump %i\n",lump);
+	//scr_printf ("cache miss on lump %i\n",lump);
 	ptr = Z_Malloc (W_LumpLength (lump), tag, &lumpcache[lump]);
 	W_ReadLump (lump, lumpcache[lump]);
     }
     else
     {
-	//printf ("cache hit on lump %i\n",lump);
+	//scr_printf ("cache hit on lump %i\n",lump);
 	Z_ChangeTag (lumpcache[lump],tag);
     }
 	

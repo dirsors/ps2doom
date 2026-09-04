@@ -30,7 +30,7 @@ static const char rcsid[] = "$Id: d_main.c,v 1.8 1997/02/03 22:45:09 b1 Exp $";
 #define	BGCOLOR		7
 #define	FGCOLOR		8
 
-
+#include <debug.h>
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -358,7 +358,7 @@ void D_DoomLoop (void)
     {
 	char    filename[20];
 	sprintf (filename,"debug%i.txt",consoleplayer);
-	printf ("debug output to: %s\n",filename);
+	scr_printf ("debug output to: %s\n",filename);
 	debugfile = fopen (filename,"w");
     }
 	
@@ -652,7 +652,7 @@ void IdentifyVersion (void)
 	// C'est ridicule!
 	// Let's handle languages in config files, okay?
 	language = french;
-	printf("French version\n");
+	scr_printf("French version\n");
 	D_AddFile (doom2fwad);
 	return;
     }
@@ -699,7 +699,7 @@ void IdentifyVersion (void)
       return;
     }
 
-    printf("Game mode indeterminate.\n");
+    scr_printf("Game mode indeterminate.\n");
     gamemode = indetermined;
 
     // We don't abort. Let's see what the PWAD contains.
@@ -732,10 +732,10 @@ void FindResponseFile (void)
 	    handle = fopen (&myargv[i][1],"rb");
 	    if (!handle)
 	    {
-		printf ("\nNo such response file!");
+		scr_printf ("\nNo such response file!");
 		exit(1);
 	    }
-	    printf("Found response file %s!\n",&myargv[i][1]);
+	    scr_printf("Found response file %s!\n",&myargv[i][1]);
 	    fseek (handle,0,SEEK_END);
 	    size = ftell(handle);
 	    fseek (handle,0,SEEK_SET);
@@ -772,9 +772,9 @@ void FindResponseFile (void)
 	    myargc = indexinfile;
 	
 	    // DISPLAY ARGS
-	    printf("%d command-line args:\n",myargc);
+	    scr_printf("%d command-line args:\n",myargc);
 	    for (k=1;k<myargc;k++)
-		printf("%s\n",myargv[k]);
+		scr_printf("%s\n",myargv[k]);
 
 	    break;
 	}
@@ -860,10 +860,10 @@ void D_DoomMain (void)
 	break;
     }
     
-    printf ("%s\n",title);
+    scr_printf ("%s\n",title);
 
     if (devparm)
-	printf(D_DEVSTR);
+	scr_printf(D_DEVSTR);
     
     // turbo option
     if ( (p=M_CheckParm ("-turbo")) )
@@ -878,7 +878,7 @@ void D_DoomMain (void)
 	    scale = 10;
 	if (scale > 400)
 	    scale = 400;
-	printf ("turbo scale: %i%%\n",scale);
+	scr_printf ("turbo scale: %i%%\n",scale);
 	forwardmove[0] = forwardmove[0]*scale/100;
 	forwardmove[1] = forwardmove[1]*scale/100;
 	sidemove[0] = sidemove[0]*scale/100;
@@ -903,7 +903,7 @@ void D_DoomMain (void)
 	  case registered:
 	    sprintf (file,"~"DEVMAPS"E%cM%c.wad",
 		     myargv[p+1][0], myargv[p+2][0]);
-	    printf("Warping to Episode %s, Map %s.\n",
+	    scr_printf("Warping to Episode %s, Map %s.\n",
 		   myargv[p+1],myargv[p+2]);
 	    break;
 	    
@@ -938,7 +938,7 @@ void D_DoomMain (void)
     {
 	sprintf (file,"%s.lmp", myargv[p+1]);
 	D_AddFile (file);
-	printf("Playing demo %s.lmp.\n",myargv[p+1]);
+	scr_printf("Playing demo %s.lmp.\n",myargv[p+1]);
     }
     
     // get skill / episode / map from parms
@@ -968,15 +968,15 @@ void D_DoomMain (void)
     {
 	int     time;
 	time = atoi(myargv[p+1]);
-	printf("Levels will end after %d minute",time);
+	scr_printf("Levels will end after %d minute",time);
 	if (time>1)
-	    printf("s");
-	printf(".\n");
+	    scr_printf("s");
+	scr_printf(".\n");
     }
 
     p = M_CheckParm ("-avg");
     if (p && p < myargc-1 && deathmatch)
-	printf("Austin Virtual Gaming: Levels will end after 20 minutes\n");
+	scr_printf("Austin Virtual Gaming: Levels will end after 20 minutes\n");
 
     p = M_CheckParm ("-warp");
     if (p && p < myargc-1)
@@ -992,18 +992,18 @@ void D_DoomMain (void)
     }
     
     // init subsystems
-    printf ("V_Init: allocate screens.\n");
+    scr_printf ("V_Init: allocate screens.\n");
     V_Init ();
 
-    printf ("M_LoadDefaults: Load system defaults.\n");
+    scr_printf ("M_LoadDefaults: Load system defaults.\n");
     M_LoadDefaults ();              // load before initing other systems
 
-    printf ("Z_Init: Init zone memory allocation daemon. \n");
+    scr_printf ("Z_Init: Init zone memory allocation daemon. \n");
     Z_Init ();
 
-    printf ("W_Init: Init WADfiles.\n");
+    scr_printf ("W_Init: Init WADfiles.\n");
     W_InitMultipleFiles (wadfiles);
-printf("added\n");
+scr_printf("added\n");
     
 
     // Check for -file in shareware
@@ -1034,7 +1034,7 @@ printf("added\n");
     // Iff additonal PWAD files are used, print modified banner
     if (modifiedgame)
     {
-	/*m*/printf (
+	/*m*/scr_printf (
 	    "===========================================================================\n"
 	    "ATTENTION:  This version of DOOM has been modified.  If you would like to\n"
 	    "get a copy of the original game, call 1-800-IDGAMES or see the readme file.\n"
@@ -1051,7 +1051,7 @@ printf("added\n");
     {
       case shareware:
       case indetermined:
-	printf (
+	scr_printf (
 	    "===========================================================================\n"
 	    "                                Shareware!\n"
 	    "===========================================================================\n"
@@ -1060,7 +1060,7 @@ printf("added\n");
       case registered:
       case retail:
       case commercial:
-	printf (
+	scr_printf (
 	    "===========================================================================\n"
 	    "                 Commercial product - do not distribute!\n"
 	    "         Please report software piracy to the SPA: 1-800-388-PIR8\n"
@@ -1073,28 +1073,28 @@ printf("added\n");
 	break;
     }
 
-    printf ("M_Init: Init miscellaneous info.\n");
+    scr_printf ("M_Init: Init miscellaneous info.\n");
     M_Init ();
 
-    printf ("R_Init: Init DOOM refresh daemon - ");
+    scr_printf ("R_Init: Init DOOM refresh daemon - ");
     R_Init ();
 
-    printf ("\nP_Init: Init Playloop state.\n");
+    scr_printf ("\nP_Init: Init Playloop state.\n");
     P_Init ();
 
-    printf ("I_Init: Setting up machine state.\n");
+    scr_printf ("I_Init: Setting up machine state.\n");
     I_Init ();
 
-    printf ("D_CheckNetGame: Checking network game status.\n");
+    scr_printf ("D_CheckNetGame: Checking network game status.\n");
     D_CheckNetGame ();
 
-    printf ("S_Init: Setting up sound.\n");
+    scr_printf ("S_Init: Setting up sound.\n");
     S_Init (snd_SfxVolume /* *8 */, snd_MusicVolume /* *8*/ );
 
-    printf ("HU_Init: Setting up heads up display.\n");
+    scr_printf ("HU_Init: Setting up heads up display.\n");
     HU_Init ();
 
-    printf ("ST_Init: Init status bar.\n");
+    scr_printf ("ST_Init: Init status bar.\n");
     ST_Init ();
 
     // check for a driver that wants intermission stats
@@ -1105,7 +1105,7 @@ printf("added\n");
 	extern  void*	statcopy;                            
 
 	statcopy = (void*)atoi(myargv[p+1]);
-	printf ("External statistics registered.\n");
+	scr_printf ("External statistics registered.\n");
     }
     
     // start the apropriate game based on parms

@@ -144,7 +144,7 @@ void I_GetEvent(SDL_Event *Event)
     Uint8 buttonstate;
     event_t event;
 
-	//printf("Event->type: %i\n", Event->type);
+	//scr_printf("Event->type: %i\n", Event->type);
 
     switch (Event->type)
     {
@@ -152,7 +152,7 @@ void I_GetEvent(SDL_Event *Event)
 
 		case SDL_JOYBUTTONDOWN:
 		{
-			// printf("button: %i\n", Event->jbutton.button);
+			// scr_rintf("button: %i\n", Event->jbutton.button);
 
 			switch(Event->jbutton.button)
 			{
@@ -243,7 +243,7 @@ void I_GetEvent(SDL_Event *Event)
 
 		case SDL_JOYAXISMOTION:
 		{
-			// printf(" event.jaxis.axis : %i value: %i\n", Event->jaxis.axis, Event->jaxis.value);
+			// scr_printf(" event.jaxis.axis : %i value: %i\n", Event->jaxis.axis, Event->jaxis.value);
 	
 
 			if( Event->jaxis.axis == 0)
@@ -337,7 +337,7 @@ void I_StartTic (void)
 {
     SDL_Event Event;
 
-	// printf("starttic\n");
+	// scr_printf("starttic\n");
 
     while ( SDL_PollEvent(&Event) )
 	I_GetEvent(&Event);

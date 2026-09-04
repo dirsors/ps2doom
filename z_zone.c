@@ -23,7 +23,7 @@
 
 static const char
 rcsid[] = "$Id: z_zone.c,v 1.4 1997/02/03 16:47:58 b1 Exp $";
-
+#include <debug.h>
 #include "z_zone.h"
 #include "i_system.h"
 #include "doomdef.h"
@@ -330,16 +330,16 @@ Z_DumpHeap
 {
     memblock_t*	block;
 	
-    printf ("zone size: %i  location: %p\n",
+    scr_printf ("zone size: %i  location: %p\n",
 	    mainzone->size,mainzone);
     
-    printf ("tag range: %i to %i\n",
+    scr_printf ("tag range: %i to %i\n",
 	    lowtag, hightag);
 	
     for (block = mainzone->blocklist.next ; ; block = block->next)
     {
 	if (block->tag >= lowtag && block->tag <= hightag)
-	    printf ("block:%p    size:%7i    user:%p    tag:%3i\n",
+	    scr_printf ("block:%p    size:%7i    user:%p    tag:%3i\n",
 		    block, block->size, block->user, block->tag);
 		
 	if (block->next == &mainzone->blocklist)
@@ -349,13 +349,13 @@ Z_DumpHeap
 	}
 	
 	if ( (byte *)block + block->size != (byte *)block->next)
-	    printf ("ERROR: block size does not touch the next block\n");
+	    scr_printf ("ERROR: block size does not touch the next block\n");
 
 	if ( block->next->prev != block)
-	    printf ("ERROR: next block doesn't have proper back link\n");
+	    scr_printf ("ERROR: next block doesn't have proper back link\n");
 
 	if (!block->user && !block->next->user)
-	    printf ("ERROR: two consecutive free blocks\n");
+	    scr_printf ("ERROR: two consecutive free blocks\n");
     }
 }
 

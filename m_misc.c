@@ -26,7 +26,7 @@
 
 static const char
 rcsid[] = "$Id: m_misc.c,v 1.6 1997/02/03 22:45:10 b1 Exp $";
-
+#include <debug.h>
 #include <stdlib.h>
 #include <ctype.h>
 #include <unistd.h>
@@ -330,7 +330,7 @@ void M_LoadDefaults (void)
     if (i && i<myargc-1)
     {
 	defaultfile = myargv[i+1];
-	printf ("	default file: %s\n",defaultfile);
+	scr_printf ("	default file: %s\n",defaultfile);
     }
     else
 	defaultfile = basedefault;

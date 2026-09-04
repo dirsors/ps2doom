@@ -23,7 +23,7 @@
 
 static const char
 rcsid[] = "$Id: wi_stuff.c,v 1.7 1997/02/03 22:45:13 b1 Exp $";
-
+#include <debug.h>
 #include <stdio.h>
 
 #include "m_swap.h"
@@ -495,7 +495,7 @@ WI_drawOnLnode
     else
     {
 	// DEBUG
-	printf("Could not place patch on level %d", n+1); 
+	scr_printf("Could not place patch on level %d", n+1); 
     }
 }
 
